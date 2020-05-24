@@ -1,5 +1,6 @@
-set nocompatible              " required
-filetype off                  " required
+" required
+set nocompatible
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,43 +11,46 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
-"Plugin 'Valloric/YouCompleteMe' "DOES NOT WORK
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'indentpython.vim'
+"Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
+"Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-
-"LaTeX
-Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'powerline/powerline'
+Plugin 'lervag/vimtex'
 
 call vundle#end()
 
-filetype plugin indent on    " required
+" required
+filetype plugin indent on
 
+
+" Split Layouts
+" split areas
 set splitbelow
 set splitright
-
-"split navigations
+" split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Code Folding
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-
 " Enable folding with the spacebar
 nnoremap <space> za
+" SimplyFold (https://github.com/tmhedberg/simpylfold)
+" see the docstrings for folded code
+let g:SimpylFold_docstring_preview=1
 
-
-" Show line number
-set ruler
-
+"Indentation
 "PEP8 Standard
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -58,43 +62,62 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
-
-"highlight all characters past 99 columns
-"augroup vimrc_autocmds
-"  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-"  autocmd BufEnter * match OverLength /\%99v.*/
-"augroup END
-
-" Enable Colorcolumn
-set colorcolumn=99
-
+" Indentpython (https://github.com/vim-scripts/indentpython.vim)
 "Full stack developement Standard
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2 | 
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
-
-"Flagging unnecessary whitespace
+" Flagging unnecessary whitespace
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-"UTF8 Support
+" UTF-8 Support
 set encoding=utf-8
 
-"Autocomplete customizations
+" Auto-Complete
+" YouCompleteMe (https://github.com/ycm-core/YouCompleteMe)
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-"prettier code
-"let python_highlight_all=1 "Highlights with red the not needed spaces
-syntax on
-set nu "Line numbering
+" Virtual Environments
+" https://github.com/jmcantrell/vim-virtualenv
 
-"NERDTree 
+" Syntax Checking/Highlighting
+" Syntastic (https://github.com/vim-syntastic/syntastic)
+" Flake8 (https://github.com/nvie/vim-flake8)
+let python_highlight_all=1
+syntax on
+
+" Color Schemes
+" Awesome-vim-colorschemes (https://github.com/rafi/awesome-vim-colorschemes)
+
+" File Browsing
+" NERDTree (https://github.com/preservim/nerdtree) 
+" Vim-nerdtree-tabs (https://github.com/jistr/vim-nerdtree-tabs)
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 "type 'NERDTreeToggle' or 'NERDTreeTabsToggle' to manually open it 
 
-"LATEX
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
+" Super Searching
+" ctrlp (https://github.com/ctrlpvim/ctrlp.vim)
+
+" Line Numbering
+set nu
+
+" Enable Colorcolumn
+set ruler
+set colorcolumn=99
+
+" Git Integration
+" vim-fugitive (https://github.com/tpope/vim-fugitive)
+
+" Powerline (https://github.com/powerline/powerline)
+
+" System Clipboard
+set clipboard=unnamed
+
+" Mac OS backspace
+set backspace=indent,eol,start
+
+" VIMTEX (ihttps://github.com/lervag/vimtex)
