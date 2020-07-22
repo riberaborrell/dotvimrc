@@ -25,7 +25,7 @@ Plugin 'powerline/powerline'
 Plugin 'lervag/vimtex'
 
 call vundle#end()
-
+ 
 " required
 filetype plugin indent on
 
@@ -68,11 +68,19 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2 | 
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
+" matlab indentation
+"au BufNewFile,BufRead *.m
+"    \ set tabstop=4 |
+"    \ set shiftwidth=4 |
+"    \ set autoindent |
 " Flagging unnecessary whitespace
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " UTF-8 Support
 set encoding=utf-8
+
+" spelling
+"set spell
 
 " Auto-Complete
 " YouCompleteMe (https://github.com/ycm-core/YouCompleteMe)
@@ -85,8 +93,20 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Syntax Checking/Highlighting
 " Syntastic (https://github.com/vim-syntastic/syntastic)
 " Flake8 (https://github.com/nvie/vim-flake8)
-let python_highlight_all=1
 syntax on
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" python syntax
+let python_highlight_all = 1
+
+" latex syntax
+let g:syntastic_quiet_messages = { "level": "warnings" }
 
 " Color Schemes
 " Awesome-vim-colorschemes (https://github.com/rafi/awesome-vim-colorschemes)
@@ -121,3 +141,14 @@ set clipboard=unnamed
 set backspace=indent,eol,start
 
 " VIMTEX (ihttps://github.com/lervag/vimtex)
+" https://stackoverflow.com/questions/16533241/how-to-suppress-warnings-in-vim-latex
+let g:Tex_IgnoredWarnings = 
+    \'Underfull'."\n".
+    \'Overfull'."\n".
+    \'specifier changed to'."\n".
+    \'You have requested'."\n".
+    \'Missing number, treated as zero.'."\n".
+    \'There were undefined references'."\n".
+    \'Citation %.%# undefined'."\n".
+    \'Double space found.'."\n"
+let g:Tex_IgnoreLevel = 8
