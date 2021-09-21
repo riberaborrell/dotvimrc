@@ -23,6 +23,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'powerline/powerline'
 Plugin 'lervag/vimtex'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
  
