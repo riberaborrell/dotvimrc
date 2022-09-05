@@ -30,7 +30,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 # clone project
 cd ~/.vim
-git clone https://github.com/eborrell/dotvimrc.git
+git clone https://github.com/riberaborrell/dotvimrc.git
 
 # create symlinks
 rm ~/.vimrc
